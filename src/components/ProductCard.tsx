@@ -2,6 +2,7 @@ import { Badge, Box, Button, Image, Stack } from "@chakra-ui/react";
 
 import { Link } from "react-router-dom";
 import { IProduct } from "../@types/product";
+import Rating from "./Rating";
 
 type Props = {
   product: IProduct;
@@ -10,7 +11,9 @@ type Props = {
 const ProductCard = ({ product }: Props) => {
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-      <Image h={200} objectFit="cover" src={product.image} alt={product.title} />
+      <Link to={`/products/${product.id}`}>
+        <Image height={200} objectFit="cover" objectPosition="center" src={product.image} alt={product.title} />
+      </Link>
 
       <Box p="6">
         <Box display="flex" alignItems="baseline">
@@ -26,19 +29,15 @@ const ProductCard = ({ product }: Props) => {
 
         <Box>
           ${product.price}
-          <Box as="span" color="gray.600" fontSize="sm">
+          <Box as="span" color="gray.300" fontSize="sm">
             / unit
           </Box>
         </Box>
 
         <Box display="flex" mt="2" alignItems="center">
-          {/* {Array(5)
-            .fill("")
-            .map((_, i) => (
-              <Rating key={i} defaultIsChecked={i < product.rating.rate} isReadOnly />
-            ))} */}
-          <Box as="span" ml="2" color="gray.600" fontSize="sm">
-            {product.rating.count} reviews
+          <Rating value={product.rating.rate} />
+          <Box as="span" ml="2" color="gray.300" fontSize="sm">
+            {product.rating.count} reviews R
           </Box>
         </Box>
 

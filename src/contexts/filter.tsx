@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { IFetchProductsParams } from "../@types/product";
 
 interface IFilterContext {
@@ -8,7 +8,7 @@ interface IFilterContext {
 
 const initialState: IFetchProductsParams = {
   sort: "asc",
-  limit: 10,
+  limit: 5,
 };
 export const FilterContext = createContext<IFilterContext>({
   filters: initialState,
@@ -17,9 +17,6 @@ export const FilterContext = createContext<IFilterContext>({
 
 const FilterProvider = ({ children }: { children: ReactNode }) => {
   const [filters, setFilters] = useState<IFetchProductsParams>(initialState);
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
   const updateFilters = (p: IFetchProductsParams) => {
     setFilters((prev) => ({ ...prev, ...p }));
   };

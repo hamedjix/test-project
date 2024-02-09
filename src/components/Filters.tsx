@@ -21,7 +21,7 @@ const Filters = () => {
   };
   const bg = useColorModeValue("#EEF1FF", "#1A202C");
   return (
-    <Flex className="sticky" p={4} justify="space-between" overflowX="auto" bg={bg}>
+    <Flex p={4} justify="space-between" overflowX="auto" bg={bg}>
       <HStack spacing={5}>
         <FormControl display="flex" alignItems="center">
           <FormLabel fontSize={16} my={0}>
@@ -32,6 +32,9 @@ const Filters = () => {
               5
             </option>
             <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
           </Select>
         </FormControl>
         <FormControl display="flex" alignItems="center">

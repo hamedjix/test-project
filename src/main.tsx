@@ -11,8 +11,8 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <ChakraProvider theme={theme}>
             <FilterProvider>
@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             </FilterProvider>
           </ChakraProvider>
         </BrowserRouter>
-      </AuthProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

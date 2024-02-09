@@ -1,7 +1,7 @@
 import { IFetchProductsParams, IProduct } from "../@types/product";
 import { Axios } from "./axios";
 
-export const getProducts = async ({ sort = "asc", limit = 10 }: IFetchProductsParams) => {
+export const getProducts = async ({ sort, limit }: IFetchProductsParams) => {
   return (await Axios.get<IProduct[]>(`products?sort=${sort}&limit=${limit}`)).data;
 };
 export const login = async (data: { username: string; password: string }) => {

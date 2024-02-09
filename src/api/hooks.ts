@@ -2,7 +2,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth";
 import { useFilterParams } from "../contexts/filter";
-import { localStorageManage } from "../helper";
 import { getProductById, getProducts, login } from "./apiCalls";
 
 export const useProducts = () => {
@@ -18,7 +17,7 @@ export const useAuthentications = () => {
   return useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      localStorageManage(true, data.token);
+      localStorage.setItem("pr-token", data.token);
       setUserStatus(true, data.username);
       navigate("/");
     },

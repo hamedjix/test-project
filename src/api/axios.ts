@@ -8,6 +8,7 @@ export const Axios = axios.create({
 Axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
+    console.log({ token });
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -31,7 +32,7 @@ Axios.interceptors.response.use(
           console.log("Bad Request");
           break;
         case 401:
-          unAuthorize();
+          // unAuthorize();
           window.location.href = "/login";
           break;
         case 403:
@@ -77,7 +78,7 @@ export const authorize = (token: string) => {
   });
 };
 export const unAuthorize = () => {
-  localStorage.removeItem("token");
+  localStorage.removeItem("pr-token");
   delete Axios.defaults.headers.common["Authorization"];
   window.location.href = "/login";
 };

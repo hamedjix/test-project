@@ -1,9 +1,5 @@
 import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Tag, Text } from "@chakra-ui/react";
-import { login } from "../api/apiCalls";
-import { authorize } from "../api/axios";
 import { useAuthentications } from "../api/hooks";
-import { useAuth } from "../contexts/auth";
-import { localStorageManage } from "../helper";
 
 const Login = () => {
   const { mutate } = useAuthentications();
@@ -18,8 +14,8 @@ const Login = () => {
     mutate({ username: formElements.username.value, password: formElements.password.value });
   };
   return (
-    <Flex width="full" align="center" justifyContent="center" flex="1" direction="column">
-      <Box p={8} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
+    <Flex className="h-screen justify-center bg-blue-400-normal" width="full" align="center" justify="center" flex="1" direction="column">
+      <Box p={8} mb={20} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
         <Box textAlign="center">
           <Heading>Login</Heading>
         </Box>
@@ -40,7 +36,7 @@ const Login = () => {
         </Box>
       </Box>
       <Tag position="absolute" bottom={5} colorScheme="blue">
-        <Text>Note : use Your Name with any Password, I Let You Enter!</Text>
+        <Text>Note : I filled form with a username and password that works! but you can change it based on api docs if you want</Text>
       </Tag>
     </Flex>
   );

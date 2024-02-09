@@ -12,7 +12,7 @@ const Rating = ({ value, max = 5 }: RatingProps) => {
       {Array(max)
         .fill("")
         .map((_, i) => (
-          <Icon key={i} as={StarIcon} color={i < value ? "yellow.400" : "gray.300"} />
+          <Icon key={i} as={StarIcon} color={i < Math.floor(value) ? "yellow.400" : "gray.300"} />
         ))}
     </Box>
   );

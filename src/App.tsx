@@ -8,22 +8,22 @@ import Products from "./pages/Products";
 function App() {
   const { isLoggedIn } = useAuth();
   return (
-    <Layout>
-      <Routes>
-        {!isLoggedIn ? (
-          <>
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<Navigate to="/login" />} />
-          </>
-        ) : (
-          <>
-            <Route path="/" element={<Products />} />
+    <Routes>
+      {!isLoggedIn ? (
+        <>
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </>
+      ) : (
+        <>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="*" element={<Navigate to="/" />} />
-          </>
-        )}
-      </Routes>
-    </Layout>
+          </Route>
+        </>
+      )}
+    </Routes>
   );
 }
 

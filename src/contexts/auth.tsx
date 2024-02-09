@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { LocalStoragChecker } from "../helper";
 
 interface IAuthContext {
   user: string;
@@ -14,7 +13,7 @@ const initialState = {
 const AuthContext = createContext<IAuthContext>(initialState);
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const initialAuthState = LocalStoragChecker();
+  const initialAuthState = Boolean(localStorage.getItem("pr-token"));
   const [user, setUser] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(initialAuthState);
   const setUserStatus: (flag: boolean, name?: string) => void = (flag, name = "") => {

@@ -1,6 +1,7 @@
-import { Badge, Box, Button, Image, Stack } from "@chakra-ui/react";
+import { Badge, Box, Button, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useProduct } from "../api/hooks";
+import Rating from "../components/Rating";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -10,39 +11,35 @@ const ProductDetails = () => {
       {!product ? (
         <div></div>
       ) : (
-        <Box maxW="md" borderWidth="1px" borderRadius="lg" overflow="hidden">
-          <Image src={product.image} alt={product.title} />
+        <Flex direction={{ base: "column", md: "row" }}>
+          <Box flex="1" p="5">
+            <Image src={product.image} alt={product.title} />
+          </Box>
 
-          <Box p="6">
-            <Box display="flex" alignItems="baseline">
-              <Badge borderRadius="full" px="2" colorScheme="teal">
-                {product.category}
-              </Badge>
-            </Box>
+          <Box flex="1" p="5">
+            <Badge borderRadius="full" px="2" colorScheme="teal">
+              {product.category}
+            </Badge>
 
-            <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
+            <Text mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
               {product.title}
-            </Box>
+            </Text>
 
-            <Box>
+            <Text>
               ${product.price}
               <Box as="span" color="gray.600" fontSize="sm">
                 / unit
               </Box>
-            </Box>
+            </Text>
 
             <Box display="flex" mt="2" alignItems="center">
-              {/* {Array(5)
-            .fill("")
-            .map((_, i) => (
-              <Rating key={i}  />
-            ))} */}
+              <Rating value={product.rating.rate} />
               <Box as="span" ml="2" color="gray.600" fontSize="sm">
                 {product.rating.count} reviews
               </Box>
             </Box>
 
-            <Box mt="2">{product.description}</Box>
+            <Text mt="2">{product.description}</Text>
 
             <Stack direction="row" spacing={4} align="center" mt="3">
               <Button colorScheme="teal" variant="outline">
@@ -50,7 +47,7 @@ const ProductDetails = () => {
               </Button>
             </Stack>
           </Box>
-        </Box>
+        </Flex>
       )}
     </>
   );

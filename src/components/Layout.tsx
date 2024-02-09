@@ -1,12 +1,18 @@
-type Props = {
-  children: React.ReactNode;
-};
-const Layout = ({ children }: Props) => {
+import { Link, Outlet } from "react-router-dom";
+import LogoutButton from "./LogoutButton";
+
+const Layout = () => {
   return (
     <div className="flex flex-col h-screen">
-      <header className="h-20 bg-gray-300">Header</header>
-      <div className="bg-blue-100 flex-1">{children}</div>
-      <footer className="h-20 bg-gray-300">Footer</footer>
+      <header className="flex justify-between align-middle p-3 bg-blue-950">
+        <Link to="/" className="text-white">
+          <h1 className="font-bold">Test Project</h1>
+        </Link>
+        <LogoutButton />
+      </header>
+      <div className="bg-blue-950 flex-1 overflow-y-auto">
+        <Outlet />
+      </div>
     </div>
   );
 };
