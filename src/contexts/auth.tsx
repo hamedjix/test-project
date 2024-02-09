@@ -1,26 +1,23 @@
 import { createContext, ReactNode, useContext, useState } from "react";
+import { tokenName } from "../api/axios";
 
 interface IAuthContext {
-  user: string;
   isLoggedIn: boolean;
-  setUserStatus: (flag: boolean, name?: string) => void;
+  setUserStatus: (flag: boolean) => void;
 }
 const initialState = {
-  user: "",
   isLoggedIn: false,
   setUserStatus: () => {},
 };
 const AuthContext = createContext<IAuthContext>(initialState);
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const initialAuthState = Boolean(localStorage.getItem("pr-token"));
-  const [user, setUser] = useState<string>("");
+  const initialAuthState = Boolean(localStorage.getItem(tokenName));
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(initialAuthState);
-  const setUserStatus: (flag: boolean, name?: string) => void = (flag, name = "") => {
-    setUser(name);
+  const setUserStatus: (flag: boolean) => void = (flag) => {
     setIsLoggedIn(flag);
   };
-  return <AuthContext.Provider value={{ user, setUserStatus, isLoggedIn }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ setUserStatus, isLoggedIn }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

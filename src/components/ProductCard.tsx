@@ -10,7 +10,7 @@ type Props = {
 
 const ProductCard = ({ product }: Props) => {
   return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" className="hover:scale-105 transition-all duration-300">
       <Link to={`/products/${product.id}`}>
         <Image height={200} objectFit="cover" objectPosition="center" src={product.image} alt={product.title} />
       </Link>

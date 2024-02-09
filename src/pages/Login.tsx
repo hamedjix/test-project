@@ -2,7 +2,7 @@ import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Tag, Text } 
 import { useAuthentications } from "../api/hooks";
 
 const Login = () => {
-  const { mutate } = useAuthentications();
+  const { mutate, isPending } = useAuthentications();
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ const Login = () => {
               <FormLabel>Password</FormLabel>
               <Input name="password" type="password" placeholder="*******" defaultValue="83r5^_" />
             </FormControl>
-            <Button type="submit" colorScheme="teal" variant="outline" width="full" mt={4}>
+            <Button type="submit" colorScheme="teal" variant="outline" width="full" mt={4} isLoading={isPending}>
               Sign In
             </Button>
           </form>

@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 const baseURL = "https://fakestoreapi.com";
+export const tokenName = "pr-token";
 
 export const Axios = axios.create({
   baseURL,
@@ -7,15 +8,13 @@ export const Axios = axios.create({
 
 Axios.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
-    console.log({ token });
+    const token = localStorage.getItem(tokenName);
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
   (error: AxiosError) => {
-    // Do something with request error
     console.log("Request Error : ", error);
     return Promise.reject(error);
   }
@@ -32,7 +31,7 @@ Axios.interceptors.response.use(
           console.log("Bad Request");
           break;
         case 401:
-          // unAuthorize();
+          unAuthorize();
           window.location.href = "/login";
           break;
         case 403:
@@ -70,7 +69,7 @@ Axios.interceptors.response.use(
 export const authorize = (token: string) => {
   return new Promise((resolve, reject) => {
     if (token) {
-      localStorage.setItem("token", token);
+      localStorage.setItem(tokenName, token);
       Axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       return resolve(true);
     }
@@ -78,7 +77,7 @@ export const authorize = (token: string) => {
   });
 };
 export const unAuthorize = () => {
-  localStorage.removeItem("pr-token");
+  localStorage.removeItem(tokenName);
   delete Axios.defaults.headers.common["Authorization"];
   window.location.href = "/login";
 };

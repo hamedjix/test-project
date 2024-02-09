@@ -43,13 +43,12 @@ const Filters = () => {
           </FormLabel>
           <Select size="sm" w={170} minW={120} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => onFilterChange(e.target.value, "sort")}>
             <option value="asc" defaultChecked>
-              Acs
+              Ascending
             </option>
-            <option value="desc">Desc</option>
+            <option value="desc">Descending</option>
           </Select>
         </FormControl>
       </HStack>
-      {/* <Pagination /> */}
     </Flex>
   );
 };

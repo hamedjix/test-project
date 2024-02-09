@@ -12,11 +12,11 @@ const Products = () => {
       <Box position="relative">
         {!isPending && Array.isArray(data) ? (
           <Grid
-            p={4}
+            p={5}
             templateColumns={{
               base: "repeat(1, minmax(200px, 1fr))",
-              md: "repeat(1, minmax(200px, 1fr))",
-              lg: "repeat(3, minmax(200px, 1fr))",
+              md: "repeat(2, minmax(200px, 1fr))",
+              lg: "repeat(4, minmax(200px, 1fr))",
             }}
             gap={6}
           >

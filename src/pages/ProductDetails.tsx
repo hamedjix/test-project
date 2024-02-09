@@ -1,6 +1,7 @@
 import { Badge, Box, Button, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useProduct } from "../api/hooks";
+import Loader from "../components/Loader";
 import Rating from "../components/Rating";
 
 const ProductDetails = () => {
@@ -9,7 +10,9 @@ const ProductDetails = () => {
   return (
     <>
       {!product ? (
-        <div></div>
+        <Flex justifyContent="center" mt={30}>
+          <Loader />
+        </Flex>
       ) : (
         <Flex direction={{ base: "column", md: "row" }}>
           <Box flex="1" p="5">
